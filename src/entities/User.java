@@ -4,6 +4,7 @@ public class User {
     private String ime;
     private String email;
     private String adresa;
+    private String novo;
 
     public User(String ime, String email, String adresa){
         this.ime = ime;
