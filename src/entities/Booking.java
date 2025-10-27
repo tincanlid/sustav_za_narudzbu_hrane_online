@@ -1,25 +1,29 @@
 package entities;
 
-public class Booking {
-    private User user;
-    private String restoran;
-    private String datum;
+public class Booking implements Reservable{
+    private int bookingId;
+    private String date;
 
-    public Booking(User user, String restoran, String datum){
-        this.user = user;
-        this.restoran = restoran;
-        this.datum = datum;
+    public Booking(int BookingId, String date){
+        this.bookingId = BookingId;
+        this.date = date;
     }
 
-    public User getUser(){
-        return user;
+    public int getBookingId(){
+        return bookingId;
     }
 
-    public String getRestoran(){
-        return restoran;
+    public String getDate(){
+        return date;
     }
 
-    public String getDatum(){
-        return datum;
+    @Override
+    public void reserve(){
+        System.out.println("Booking #" + bookingId + " reserved za " + date);
+    }
+
+    @Override
+    public String toString(){
+        return "Booking #" + bookingId + " (" + date + ")";
     }
 }
