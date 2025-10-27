@@ -1,25 +1,13 @@
 package entities;
 
-public class Record {
-    private User user;
-    private Item item;
-    private Booking booking;
-
-    public Record(User user, Item item, Booking booking){
-        this.user = user;
-        this.item = item;
-        this.booking = booking;
+public record Record (User user, Item item, Booking booking) implements Trackable {
+    @Override
+    public void track(){
+        System.out.println("Tracking order: " + user.getIme() + ": " + item.getNaziv());
     }
 
-    public User getUser(){
-        return user;
-    }
-
-    public Item getItem(){
-        return item;
-    }
-
-    public Booking getBooking(){
-        return booking;
+    @Override
+    public String toString(){
+        return "Record(user=" + user.getIme() + ", item= " + item.getNaziv() + ", booking= " + booking.getDate() + ")";
     }
 }

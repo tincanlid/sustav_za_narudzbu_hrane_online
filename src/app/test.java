@@ -2,16 +2,16 @@ package app;
 
 import entities.*;
 import entities.Record;
-
 import java.util.Scanner;
 
 public class test {
-        private static final int BROJ_OBJEKATA = 5;
+        private static final int BROJ_OBJEKATA = 2;
 
         static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
 
             User[] users = new User[BROJ_OBJEKATA];
+            Admin[] admins = new Admin[BROJ_OBJEKATA];
             Item[] items = new Item[BROJ_OBJEKATA];
             Booking[] bookings = new Booking[BROJ_OBJEKATA];
             Record[] records = new Record[BROJ_OBJEKATA];
@@ -21,12 +21,14 @@ public class test {
             for (int i = 0; i < users.length; i++){
                 System.out.println("Ime: ");
                 String ime = scanner.nextLine();
+                System.out.println("Dob: ");
+                int dob = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Email: ");
                 String email = scanner.nextLine();
-                System.out.println("Adresa: ");
-                String adresa = scanner.nextLine();
 
-                users[i] = new User(ime,email,adresa);
+
+                users[i] = new User(i+1, ime, dob, email);
                 System.out.println();
             }
 
@@ -39,25 +41,30 @@ public class test {
                 double cijena = scanner.nextDouble();
                 scanner.nextLine();
 
-                items[i] = new Item(naziv, cijena);
+                items[i] = new Item.Builder().setIme(naziv).setCijena(cijena).build();
                 System.out.println();
             }
 
             System.out.println("Unos bookinga - ");
 
             for (int i = 0; i < bookings.length; i++){
-                System.out.println("Naziv restorana: ");
-                String naziv = scanner.nextLine();
                 System.out.println("Datum: ");
                 String datum = scanner.nextLine();
 
-                bookings[i] = new Booking(users[i], naziv, datum);
+                bookings[i] = new Booking(i+1, datum);
             }
 
             System.out.println("Unos narudzbi");
 
             for (int i = 0; i < records.length; i++){
                 records[i] = new Record(users[i], items[i], bookings[i]);
+            }
+
+            // polje osoba sadrzi usere i admine
+            Person[] osobe = new Person[BROJ_OBJEKATA * 2];
+            for (int i = 0; i < BROJ_OBJEKATA; i++){
+                osobe[i] = users[i];
+                osobe[i + BROJ_OBJEKATA] = admins[i];
             }
 
             System.out.println("Pretrazivanje usera - ");

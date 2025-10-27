@@ -1,26 +1,20 @@
 package entities;
 
-public class User {
-    private String ime;
+public class User extends Person{
     private String email;
-    private String adresa;
 
-    public User(String ime, String email, String adresa){
-        this.ime = ime;
+    public User(int id, String ime, int dob, String email){
+        super(id, ime, dob);
         this.email = email;
-        this.adresa = adresa;
-    }
-
-    public String getIme(){
-        return ime;
     }
 
     public String getEmail(){
         return email;
     }
 
-    public String getAdresa(){
-        return adresa;
+    @Override
+    public String toString(){
+        return "User: " + super.toString() + ", email =" + email;
     }
 
 }
